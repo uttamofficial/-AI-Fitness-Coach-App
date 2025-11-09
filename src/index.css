@@ -1,0 +1,55 @@
+/*
+ * === src/index.css ===
+ * This is the final version of your main CSS file.
+ * It just needs the core Tailwind directives.
+ */
+ @tailwind base;
+ @tailwind components;
+ @tailwind utilities;
+ 
+ /* Custom animations */
+ @keyframes fadeIn {
+   from {
+     opacity: 0;
+     transform: translateY(10px);
+   }
+   to {
+     opacity: 1;
+     transform: translateY(0);
+   }
+ }
+ 
+ .animate-fadeIn {
+   animation: fadeIn 0.3s ease-out;
+ }
+ 
+ /* Optional: Add a subtle scrollbar for a more polished look */
+ ::-webkit-scrollbar {
+   width: 8px;
+   height: 8px;
+ }
+ ::-webkit-scrollbar-track {
+   background: #1e293b;
+   border-radius: 10px;
+ }
+ ::-webkit-scrollbar-thumb {
+   background: #475569;
+   border-radius: 10px;
+ }
+ ::-webkit-scrollbar-thumb:hover {
+   background: #64748b;
+ }
+ 
+ /* Dark mode scrollbar */
+ .dark ::-webkit-scrollbar-track {
+   background: #0f172a;
+ }
+ .dark ::-webkit-scrollbar-thumb {
+   background: #334155;
+ }
+ .dark ::-webkit-scrollbar-thumb:hover {
+   background: #475569;
+ }
+ 
+ 
+ 
