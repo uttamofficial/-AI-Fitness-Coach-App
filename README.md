@@ -237,7 +237,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Need help? Have questions?
 
-- 📧 Email: your.email@example.com
+- 📧 Email: uttamofficial005@gmail.com
 - 🐛 Issues: [GitHub Issues](https://github.com/YOUR_USERNAME/ai-fitness-coach/issues)
 - 💡 Discussions: [GitHub Discussions](https://github.com/YOUR_USERNAME/ai-fitness-coach/discussions)
 
