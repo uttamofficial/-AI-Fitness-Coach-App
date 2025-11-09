@@ -9,7 +9,7 @@
 [![TailwindCSS](https://img.shields.io/badge/Tailwind-3.4.17-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Google AI](https://img.shields.io/badge/Google_AI-Gemini-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev/)
 
-[🚀 Live Demo](https://ai-fitness-coach-nu.vercel.app/) • [📖 Documentation](#-features) • [💬 Support](#-support)
+[🚀 Live Demo](https://ai-fitness-coach-app-nine.vercel.app/) • [📖 Documentation](#-features) • [💬 Support](#-support)
 
 ---
 
