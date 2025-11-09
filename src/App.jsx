@@ -905,11 +905,11 @@ export default function App() {
   const callGeminiTtsApi = async (textToSpeak, retries = 3) => {
   const apiKey = GOOGLE_API_KEY;
     
-    // Define TTS models to try
+    // Define TTS models to try: prefer the newest TTS preview first, then fall back.
     const ttsModels = [
+      'gemini-2.5-flash-preview-tts',
       'gemini-2.0-flash-exp',
-      'gemini-1.5-pro',
-      'gemini-2.5-flash-preview-tts'
+      'gemini-1.5-pro'
     ];
 
     for (const model of ttsModels) {
