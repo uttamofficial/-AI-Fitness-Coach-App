@@ -7,6 +7,9 @@ import {
   Trash2 // For Clear Plan
 } from 'lucide-react';
 
+// Environment: read Google API key from Vite env. Set VITE_GOOGLE_API_KEY in your local `.env`.
+const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY || '';
+
 // --- LOCAL STORAGE HELPERS (Chapter 7) ---
 const useStickyState = (defaultValue, key) => {
   const [value, setValue] = useState(() => {
@@ -742,18 +745,41 @@ export default function App() {
   // Use sticky state for persistence (Chapter 7)
   const [darkMode, setDarkMode] = useStickyState(true, 'ai-fitness-dark-mode');
   const [isThemeChanging, setIsThemeChanging] = useState(false);
+  // Start with an empty form so users must enter values manually on fresh load.
   const [formData, setFormData] = useStickyState({
-    name: 'Jane Doe',
-    age: '30',
-    gender: 'Female',
-    height: '165',
-    weight: '70',
-    fitnessGoal: 'Weight Loss',
-    fitnessLevel: 'Beginner',
-    workoutLocation: 'Home (Basic Equipment)',
-    dietaryPreference: 'Vegetarian',
-    medicalHistory: 'None',
+    name: '',
+    age: '',
+    gender: '',
+    height: '',
+    weight: '',
+    fitnessGoal: '',
+    fitnessLevel: '',
+    workoutLocation: '',
+    dietaryPreference: '',
+    medicalHistory: '',
   }, 'ai-fitness-form-data');
+
+  // Ensure any previously saved form data is cleared on mount so the form is blank
+  // on every fresh load (as requested). We clear the saved key and reset state.
+  useEffect(() => {
+    try {
+      window.localStorage.removeItem('ai-fitness-form-data');
+    } catch (e) {
+      // ignore
+    }
+    setFormData({
+      name: '',
+      age: '',
+      gender: '',
+      height: '',
+      weight: '',
+      fitnessGoal: '',
+      fitnessLevel: '',
+      workoutLocation: '',
+      dietaryPreference: '',
+      medicalHistory: '',
+    });
+  }, []);
   const [generatedPlan, setGeneratedPlan] = useStickyState(null, 'ai-fitness-generated-plan');
   const [currentStep, setCurrentStep] = useState(1);
   
@@ -805,13 +831,13 @@ export default function App() {
 
   // --- API: Generate Plan (Multiple Models with Fallback) ---
   const callGeminiApi = async (payload, retries = 3) => {
-    const apiKey = "AIzaSyBMTscPeR68fECNE4cmqCArmpM7KnxV9FU";
+  const apiKey = GOOGLE_API_KEY;
     
-    // Define multiple models to try in order
+    // Try the latest flash model first (preferred), then fall back to others
     const models = [
+      'gemini-2.0-flash-exp',
       'gemini-1.5-flash-latest',
-      'gemini-1.5-pro-latest',
-      'gemini-2.0-flash-exp'
+      'gemini-1.5-pro-latest'
     ];
 
     // Helper function to clean and parse JSON
@@ -877,7 +903,7 @@ export default function App() {
 
   // --- API: Generate TTS (Multiple Models with Fallback) ---
   const callGeminiTtsApi = async (textToSpeak, retries = 3) => {
-    const apiKey = "AIzaSyBMTscPeR68fECNE4cmqCArmpM7KnxV9FU";
+  const apiKey = GOOGLE_API_KEY;
     
     // Define TTS models to try
     const ttsModels = [
@@ -942,7 +968,7 @@ export default function App() {
 
   // --- API: Generate Image (Multiple Models with Fallback) ---
   const callImagenApi = async (prompt, retries = 3) => {
-    const apiKey = "AIzaSyBMTscPeR68fECNE4cmqCArmpM7KnxV9FU";
+  const apiKey = GOOGLE_API_KEY;
     
     // Define image models to try
     const imageModels = [
